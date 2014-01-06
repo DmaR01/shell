@@ -1,4 +1,10 @@
 #!/bin/sh
+# Simple shell script to move unwanted files/directories
+# to ~/.garbage
+# 
+# Usage: junk <filename>
+# 
+#
 
 if [ $# -ne 1 ]; then
 	
