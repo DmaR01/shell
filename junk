@@ -1,0 +1,26 @@
+#!/bin/sh
+
+if [ $# -ne 1 ]; then
+	
+	echo -e "\nUsage: `basename $0` <filename>\n"
+	exit 2
+fi
+
+
+if [ ! -d $HOME/.garbage ]; then
+	mkdir -p $HOME/.garbage
+fi
+
+if [ ! -e $1 ]; then
+	echo -e "\nSorry, $1 doesn't seem to exist\n"
+	exit 2
+else
+	mv $1 $HOME/.garbage
+	echo -e "\n$1 has been moved to $HOME/.garbage"
+	echo -e "Files: `ls -l $HOME/.garbage | wc -l | tr -d ' '`"
+	SIZE=`ls -al $HOME/.garbage | awk '{sum+=$5} END {print sum/ 1024}'`
+	echo -e "Size(kb): $SIZE\n"
+
+	exit 0
+fi
+
